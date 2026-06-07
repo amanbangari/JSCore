@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JSCore: Master JavaScript fundamentals — variables, data types, memory, operators, and type conversion. Built for developers who already know HTML & CSS." />
+  <title>JSCore — Master JavaScript From the Ground Up</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Iconify -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     1. NAVBAR
+══════════════════════════════════════════════════════ -->
+<header id="navbar" role="banner">
+  <div class="container">
+    <nav class="navbar__inner" aria-label="Main navigation">
+
+      <!-- Logo -->
+      <a href="#hero" class="navbar__logo" aria-label="JSCore home">
+        <div class="navbar__logo-icon" aria-hidden="true">JS</div>
+        <span>JS<strong>Core</strong></span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="navbar__nav" role="list">
+        <li><a href="#why-js"         class="navbar__link" id="nav-why">Why JS</a></li>
+        <li><a href="#memory"         class="navbar__link" id="nav-mem">Memory</a></li>
+        <li><a href="#variables"      class="navbar__link" id="nav-var">Variables</a></li>
+        <li><a href="#data-types"     class="navbar__link" id="nav-types">Data Types</a></li>
+        <li><a href="#operators"      class="navbar__link" id="nav-ops">Operators</a></li>
+        <li><a href="#type-conversion"class="navbar__link" id="nav-conv">Coercion</a></li>
+        <li><a href="#equality"       class="navbar__link" id="nav-eq">Equality</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="navbar__actions">
+        <a href="#cta" class="btn btn--primary" id="nav-cta-btn">
+          <i class="fa fa-rocket" aria-hidden="true"></i> Start Learning
+        </a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- Scroll progress indicator -->
+    <div class="navbar__progress" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav class="navbar__mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="#why-js"          class="navbar__link">Why JavaScript Exists</a>
+    <a href="#memory"          class="navbar__link">Memory &amp; Bytes</a>
+    <a href="#variables"       class="navbar__link">Variables</a>
+    <a href="#data-types"      class="navbar__link">Data Types</a>
+    <a href="#numbers"         class="navbar__link">Under the Hood: Numbers</a>
+    <a href="#operators"       class="navbar__link">Operators</a>
+    <a href="#type-conversion" class="navbar__link">Type Conversion</a>
+    <a href="#equality"        class="navbar__link">Equality</a>
+    <a href="#cta"             class="btn btn--primary" style="margin-top:8px">Start Learning</a>
+  </nav>
+</header>
+
+<!-- ══════════════════════════════════════════════════════
+     2. HERO
+══════════════════════════════════════════════════════ -->
+<main id="main-content">
+
+<section id="hero" aria-labelledby="hero-headline">
+  <!-- Image-sequence canvas background -->
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <!-- Dark scrim so text stays readable -->
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <!-- Floating code snippets -->
+  <div class="hero__floating-code" aria-hidden="true">
+const name = "developer";<br>
+let skills = ["HTML", "CSS"];<br>
+skills.push("JavaScript");
+  </div>
+  <div class="hero__floating-code" aria-hidden="true">
+function greet(name) {<br>
+&nbsp;&nbsp;return `Hello, ${name}!`;<br>
+}
+  </div>
+  <div class="hero__floating-code" aria-hidden="true">
+const price = 99.99;<br>
+const discount = price * 0.8;<br>
+// 79.992 ← JS handles this
+  </div>
+  <div class="hero__floating-code" aria-hidden="true">
+0.1 + 0.2 === 0.3 // false<br>
+typeof null       // "object"<br>
+"5" + 1           // "51" 🤔
+  </div>
+
+  <div class="container">
+    <div class="hero__content">
+
+      <!-- Badge -->
+      <div class="hero__badge reveal">
+        <span class="badge badge--primary">
+          <i class="fa fa-bolt" aria-hidden="true"></i>
+          Free Course · 12 Concepts · Beginner-Friendly
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero__headline reveal reveal-delay-1" id="hero-headline">
+        You know how it
+        <span class="gradient-text">looks.</span><br>
+        Now learn how it
+        <span class="gradient-text">thinks.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="hero__sub reveal reveal-delay-2">
+        Master JavaScript by understanding what happens
+        <em>under the hood</em> — from raw memory bytes to
+        real-world logic that powers the web.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero__actions reveal reveal-delay-3">
+        <a href="#why-js" class="btn btn--primary" id="hero-start-btn">
+          <i class="fa fa-play" aria-hidden="true"></i>
+          Start Exploring
+        </a>
+        <a href="#data-types" class="btn btn--outline" id="hero-types-btn">
+          <iconify-icon icon="ph:code-block" aria-hidden="true"></iconify-icon>
+          Browse Concepts
+        </a>
+      </div>
+
+      <!-- Social proof -->
+      <div class="hero__proof reveal reveal-delay-4">
+        <div class="hero__proof-item">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <span>4.9 rating</span>
+        </div>
+        <div class="hero__proof-item">
+          <iconify-icon icon="ph:users-three" style="color:var(--color-accent)" aria-hidden="true"></iconify-icon>
+          <span>12,400+ developers</span>
+        </div>
+        <div class="hero__proof-item">
+          <iconify-icon icon="ph:clock" style="color:var(--color-green)" aria-hidden="true"></iconify-icon>
+          <span>~2 hours to complete</span>
+        </div>
+      </div>
+
+      <!-- Hero mini code preview -->
+      <div class="hero__code-preview reveal reveal-delay-4">
+        <div class="code-glow-wrapper">
+          <article class="code-block" aria-label="Example JavaScript code">
+            <div class="code-block__header">
+              <div class="code-block__dots" aria-hidden="true">
+                <span class="code-block__dot"></span>
+                <span class="code-block__dot"></span>
+                <span class="code-block__dot"></span>
+              </div>
+              <span class="code-block__filename">first-steps.js</span>
+              <button class="copy-btn" aria-label="Copy code">
+                <i class="fa fa-copy" aria-hidden="true"></i> Copy
+              </button>
+            </div>
+            <div class="code-block__body">
+              <code aria-label="JavaScript code showing variables and a function"><span class="tok-comment">// Your HTML/CSS makes it look good.</span>
+<span class="tok-comment">// JavaScript makes it come alive.</span>
+
+<span class="tok-keyword">const</span> <span class="tok-var">username</span> <span class="tok-op">=</span> <span class="tok-string">"Alex"</span><span class="tok-op">;</span>       <span class="tok-comment">// String</span>
+<span class="tok-keyword">let</span>   <span class="tok-var">cartTotal</span> <span class="tok-op">=</span> <span class="tok-number">0</span><span class="tok-op">;</span>            <span class="tok-comment">// Number</span>
+<span class="tok-keyword">const</span> <span class="tok-var">isLoggedIn</span> <span class="tok-op">=</span> <span class="tok-bool">true</span><span class="tok-op">;</span>        <span class="tok-comment">// Boolean</span>
+
+<span class="tok-keyword">function</span> <span class="tok-fn">applyDiscount</span><span class="tok-op">(</span><span class="tok-var">price</span><span class="tok-op">,</span> <span class="tok-var">pct</span><span class="tok-op">)</span> <span class="tok-op">{</span>
+  <span class="tok-keyword">return</span> <span class="tok-var">price</span> <span class="tok-op">*</span> <span class="tok-op">(</span><span class="tok-number">1</span> <span class="tok-op">-</span> <span class="tok-var">pct</span> <span class="tok-op">/</span> <span class="tok-number">100</span><span class="tok-op">)</span><span class="tok-op">;</span>
+<span class="tok-op">}</span>
+
+<span class="tok-fn">applyDiscount</span><span class="tok-op">(</span><span class="tok-number">99.99</span><span class="tok-op">,</span> <span class="tok-number">20</span><span class="tok-op">)</span><span class="tok-op">;</span> <span class="tok-comment">// → 79.992</span></code>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="hero__scroll" aria-hidden="true">
+    <span>scroll to explore</span>
+    <i class="fa fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     3. WHY JAVASCRIPT EXISTS
+══════════════════════════════════════════════════════ -->
+<section id="why-js" class="section" aria-labelledby="why-js-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--primary reveal">
+          <i class="fa fa-lightbulb" aria-hidden="true"></i> Section 01
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="why-js-title">
+        HTML gives it <span class="gradient-text">structure.</span><br>
+        CSS gives it <span class="gradient-text">style.</span><br>
+        JS gives it <span class="gradient-text">a brain.</span>
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        Before writing a single line of JavaScript, understand the problem it solves —
+        and why a static page simply can't cut it.
+      </p>
+    </header>
+
+    <!-- Static vs Dynamic cards -->
+    <div class="why-grid">
+
+      <!-- Static -->
+      <article class="why-card why-card--static reveal">
+        <div class="why-card__tag">
+          <iconify-icon icon="ph:prohibit" aria-hidden="true"></iconify-icon>
+          HTML + CSS Only
+        </div>
+        <h3 class="why-card__title">A Static, Frozen Webpage</h3>
+        <p class="why-card__desc">
+          HTML and CSS describe what things look like at load time. 
+          They cannot react to a user, remember anything, or change 
+          after the page has loaded. Your "like" button is just decoration.
+        </p>
+        <div class="demo-area">
+          <button class="demo-btn-static" disabled aria-disabled="true">♥ Like this post</button>
+        </div>
+        <div class="output-box" style="margin-top:var(--space-3)">
+          <div class="output-box__label">What happens when clicked</div>
+          <span style="color:var(--color-red)">Nothing. It's just a styled element.</span>
+        </div>
+      </article>
+
+      <!-- Dynamic -->
+      <article class="why-card why-card--dynamic reveal reveal-delay-2">
+        <div class="why-card__tag">
+          <iconify-icon icon="ph:lightning" aria-hidden="true"></iconify-icon>
+          HTML + CSS + JavaScript
+        </div>
+        <h3 class="why-card__title">A Living, Breathing Interface</h3>
+        <p class="why-card__desc">
+          JavaScript listens for events, stores state in memory, and 
+          updates the page — all in real time. This is what separates 
+          a webpage from a <em>web application</em>.
+        </p>
+        <div class="demo-area">
+          <button class="demo-btn-dynamic" id="dynBtn">♥ Like this post</button>
+        </div>
+        <div class="output-box" style="margin-top:var(--space-3)">
+          <div class="output-box__label">What JavaScript does</div>
+          <span style="color:var(--color-green)">Listens · Updates state · Re-renders the UI</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Three Pillars -->
+    <h3 style="text-align:center;font-size:1rem;color:var(--text-muted);margin-top:var(--space-8);margin-bottom:var(--space-3);text-transform:uppercase;letter-spacing:.1em;font-weight:700" class="reveal">
+      The Web Platform Triad
+    </h3>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar__icon">
+          <iconify-icon icon="ph:code-html" aria-hidden="true"></iconify-icon>
+        </div>
+        <div class="pillar__label">HTML</div>
+        <div class="pillar__desc">Structure &amp; Content</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">
+          <iconify-icon icon="ph:paint-brush" aria-hidden="true"></iconify-icon>
+        </div>
+        <div class="pillar__label">CSS</div>
+        <div class="pillar__desc">Style &amp; Layout</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">
+          <iconify-icon icon="ph:lightning" aria-hidden="true"></iconify-icon>
+        </div>
+        <div class="pillar__label">JavaScript</div>
+        <div class="pillar__desc">Logic, Memory &amp; Behavior</div>
+      </div>
+    </div>
+
+    <!-- Industry example -->
+    <div class="industry-example reveal" style="max-width:700px;margin:var(--space-5) auto 0">
+      <div class="industry-example__label">
+        <iconify-icon icon="ph:buildings" aria-hidden="true"></iconify-icon>
+        Real-World Industry Example
+      </div>
+      <p style="font-size:.9rem;color:var(--text-secondary);line-height:1.75">
+        When you submit a login form on GitHub or Shopify, JavaScript validates your email
+        format <em>before</em> sending any network request — giving you instant red error messages.
+        That's JS using logic and memory to improve user experience in real time.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     4. MEMORY & BYTES
+══════════════════════════════════════════════════════ -->
+<section id="memory" class="section" aria-labelledby="memory-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--accent reveal">
+          <iconify-icon icon="ph:cpu" aria-hidden="true"></iconify-icon> Section 02
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="memory-title">
+        The Original Problem:<br>
+        <span class="gradient-text">Memory &amp; Bytes</span>
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        Your computer's memory is a massive grid of identical boxes — each
+        holding exactly 8 bits. How do we store a name vs. an age in those same boxes?
+      </p>
+    </header>
+
+    <div class="memory-layout">
+
+      <!-- Memory Grid Visual -->
+      <figure class="memory-visual reveal">
+        <div class="code-block" style="padding:var(--space-3)">
+          <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:var(--space-2)">
+            RAM — 64 memory addresses (simplified)
+          </div>
+          <div class="memory-grid" id="memoryGrid" role="img" aria-label="Visual representation of RAM memory addresses with highlighted slots for name and age variables"></div>
+          <div class="memory-legend">
+            <div class="memory-legend__item">
+              <div class="memory-legend__dot" style="background:rgba(124,58,237,0.4);border:1px solid var(--color-primary)"></div>
+              <span>userName (String)</span>
+            </div>
+            <div class="memory-legend__item">
+              <div class="memory-legend__dot" style="background:rgba(6,182,212,0.3);border:1px solid var(--color-accent)"></div>
+              <span>userAge (Number)</span>
+            </div>
+            <div class="memory-legend__item">
+              <div class="memory-legend__dot" style="background:var(--color-surface);border:1px solid var(--color-border)"></div>
+              <span>Other data</span>
+            </div>
+          </div>
+        </div>
+        <figcaption style="font-size:.75rem;color:var(--text-muted);margin-top:var(--space-1);text-align:center">
+          Each hexadecimal value represents 1 byte of memory
+        </figcaption>
+      </figure>
+
+      <!-- Explanation -->
+      <div class="memory-content reveal reveal-delay-2">
+        <div style="margin-bottom:var(--space-4)">
+          <span class="badge badge--accent" style="margin-bottom:var(--space-2)">The Core Insight</span>
+          <h3>The boxes are identical.<br>The <em>labels</em> make them meaningful.</h3>
+          <p style="margin-top:var(--space-2)">
+            Memory doesn't know if address <code style="font-family:var(--font-mono);color:var(--syn-number)">0x0008</code>
+            holds a username or a bank balance. Every bit is just a 1 or 0. It's up to the
+            <strong>programming language</strong> — and your <strong>variables</strong> — to give them context.
+          </p>
+        </div>
+
+        <!-- Shelf metaphor -->
+        <div style="margin-bottom:var(--space-3)">
+          <p style="font-size:.85rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:var(--space-2)">
+            Think of variables as labelled shelf slots:
+          </p>
+          <div class="memory-shelf">
+            <div class="shelf-slot shelf-slot--name" data-label="slot: userName">
+              <div class="shelf-slot__value">"John"</div>
+            </div>
+            <div class="shelf-slot shelf-slot--age" data-label="slot: userAge">
+              <div class="shelf-slot__value">26</div>
+            </div>
+            <div class="shelf-slot" data-label="slot: isEmpty" style="border-color:var(--color-border);background:rgba(255,255,255,0.02)">
+              <div class="shelf-slot__value" style="color:var(--text-muted)">null</div>
+            </div>
+          </div>
+        </div>
+
+        <article class="code-block" aria-label="JavaScript code showing variable declarations">
+          <div class="code-block__header">
+            <div class="code-block__dots" aria-hidden="true">
+              <span class="code-block__dot"></span>
+              <span class="code-block__dot"></span>
+              <span class="code-block__dot"></span>
+            </div>
+            <span class="code-block__filename">memory-model.js</span>
+            <button class="copy-btn" aria-label="Copy code">
+              <i class="fa fa-copy" aria-hidden="true"></i> Copy
+            </button>
+          </div>
+          <div class="code-block__body">
+            <code><span class="tok-comment">// JS allocates memory for each variable</span>
+<span class="tok-keyword">const</span> <span class="tok-var">userName</span> <span class="tok-op">=</span> <span class="tok-string">"John"</span><span class="tok-op">;</span>  <span class="tok-comment">// heap — string</span>
+<span class="tok-keyword">const</span> <span class="tok-var">userAge</span>  <span class="tok-op">=</span> <span class="tok-number">26</span><span class="tok-op">;</span>      <span class="tok-comment">// stack — number</span>
+<span class="tok-keyword">let</span>   <span class="tok-var">isEmpty</span>  <span class="tok-op">=</span> <span class="tok-bool">null</span><span class="tok-op">;</span>    <span class="tok-comment">// intentional "nothing"</span></code>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     5. VARIABLES
+══════════════════════════════════════════════════════ -->
+<section id="variables" class="section" aria-labelledby="variables-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--primary reveal">
+          <iconify-icon icon="ph:cube" aria-hidden="true"></iconify-icon> Section 03
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="variables-title">
+        Variables: The <span class="gradient-text">Labelled Boxes</span><br>
+        of Your Memory Shelf
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        <code class="keyword-tooltip" style="font-family:var(--font-mono)">let</code>,
+        <code class="keyword-tooltip" style="font-family:var(--font-mono)">const</code>, and
+        <code class="keyword-tooltip" style="font-family:var(--font-mono)">var</code> — three ways
+        to create a variable, three very different behaviours.
+      </p>
+    </header>
+
+    <div class="var-toggle-area reveal">
+
+      <!-- Tabs -->
+      <div class="var-toggle-tabs" role="tablist" aria-label="Variable types">
+        <button class="var-tab active--let" data-tab="let"   id="tab-let"   role="tab" aria-selected="true"  aria-controls="panel-let">let</button>
+        <button class="var-tab"            data-tab="const" id="tab-const" role="tab" aria-selected="false" aria-controls="panel-const">const</button>
+        <button class="var-tab"            data-tab="var"   id="tab-var"   role="tab" aria-selected="false" aria-controls="panel-var">var</button>
+      </div>
+
+      <!-- let panel -->
+      <div class="var-panel active" id="panel-let" role="tabpanel" aria-labelledby="tab-let">
+        <article class="code-block" aria-label="let variable example">
+          <div class="code-block__header">
+            <div class="code-block__dots" aria-hidden="true">
+              <span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span>
+            </div>
+            <span class="code-block__filename">let-example.js</span>
+            <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+          </div>
+          <div class="code-block__body">
+            <code><span class="tok-keyword">let</span> <span class="tok-var">cartTotal</span> <span class="tok-op">=</span> <span class="tok-number">0</span><span class="tok-op">;</span>
+
+<span class="tok-comment">// User adds an item → we update the value</span>
+<span class="tok-var">cartTotal</span> <span class="tok-op">=</span> <span class="tok-var">cartTotal</span> <span class="tok-op">+</span> <span class="tok-number">29.99</span><span class="tok-op">;</span>
+
+<span class="tok-fn">console</span><span class="tok-op">.</span><span class="tok-fn">log</span><span class="tok-op">(</span><span class="tok-var">cartTotal</span><span class="tok-op">)</span><span class="tok-op">;</span> <span class="tok-comment">// 29.99</span></code>
+          </div>
+        </article>
+        <div class="var-info">
+          <div class="var-info-item">
+            <div class="var-info-item__label">Reassignable?</div>
+            <div class="var-info-item__value" style="color:var(--color-green)">
+              <i class="fa fa-check-circle" aria-hidden="true"></i> Yes
+            </div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Scope</div>
+            <div class="var-info-item__value">Block-scoped (<code style="font-family:var(--font-mono);font-size:.85em">{ }</code>)</div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Hoisted?</div>
+            <div class="var-info-item__value" style="color:var(--color-gold)">Yes, but not initialized</div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Best used for</div>
+            <div class="var-info-item__value">Values that <em>change</em> over time</div>
+          </div>
+        </div>
+        <div class="industry-example">
+          <div class="industry-example__label">
+            <iconify-icon icon="ph:buildings" aria-hidden="true"></iconify-icon>
+            Industry Use Case
+          </div>
+          <p style="font-size:.875rem;color:var(--text-secondary)">
+            <strong>Shopping cart totals, form input values, UI state</strong> — anything that gets
+            updated as the user interacts. Netflix uses <code style="font-family:var(--font-mono);color:var(--syn-keyword)">let</code>
+            for the current video timestamp so it can update every second.
+          </p>
+        </div>
+      </div>
+
+      <!-- const panel -->
+      <div class="var-panel" id="panel-const" role="tabpanel" aria-labelledby="tab-const">
+        <article class="code-block" aria-label="const variable example">
+          <div class="code-block__header">
+            <div class="code-block__dots" aria-hidden="true">
+              <span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span>
+            </div>
+            <span class="code-block__filename">const-example.js</span>
+            <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+          </div>
+          <div class="code-block__body">
+            <code><span class="tok-keyword">const</span> <span class="tok-var">API_KEY</span> <span class="tok-op">=</span> <span class="tok-string">"sk-a3f8e..."</span><span class="tok-op">;</span>
+<span class="tok-keyword">const</span> <span class="tok-var">TAX_RATE</span> <span class="tok-op">=</span> <span class="tok-number">0.08</span><span class="tok-op">;</span>
+<span class="tok-keyword">const</span> <span class="tok-var">MAX_ITEMS</span> <span class="tok-op">=</span> <span class="tok-number">100</span><span class="tok-op">;</span>
+
+<span class="tok-comment">// ❌ This will throw a TypeError:</span>
+<span class="tok-var">API_KEY</span> <span class="tok-op">=</span> <span class="tok-string">"other"</span><span class="tok-op">;</span>
+<span class="tok-comment">// Assignment to constant variable.</span></code>
+          </div>
+        </article>
+        <div class="var-info">
+          <div class="var-info-item">
+            <div class="var-info-item__label">Reassignable?</div>
+            <div class="var-info-item__value" style="color:var(--color-red)">
+              <i class="fa fa-times-circle" aria-hidden="true"></i> Never
+            </div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Scope</div>
+            <div class="var-info-item__value">Block-scoped (<code style="font-family:var(--font-mono);font-size:.85em">{ }</code>)</div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Hoisted?</div>
+            <div class="var-info-item__value" style="color:var(--color-gold)">Yes, but not initialized</div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Best used for</div>
+            <div class="var-info-item__value">Values that <em>never change</em></div>
+          </div>
+        </div>
+        <div class="industry-example">
+          <div class="industry-example__label">
+            <iconify-icon icon="ph:buildings" aria-hidden="true"></iconify-icon>
+            Industry Use Case
+          </div>
+          <p style="font-size:.875rem;color:var(--text-secondary)">
+            <strong>API keys, tax rates, configuration constants, component IDs</strong> —
+            anything that should never be accidentally overwritten. Using
+            <code style="font-family:var(--font-mono);color:var(--syn-keyword)">const</code> is the
+            industry default — it makes your intent crystal clear.
+          </p>
+        </div>
+      </div>
+
+      <!-- var panel -->
+      <div class="var-panel" id="panel-var" role="tabpanel" aria-labelledby="tab-var">
+        <article class="code-block" aria-label="var variable example">
+          <div class="code-block__header">
+            <div class="code-block__dots" aria-hidden="true">
+              <span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span>
+            </div>
+            <span class="code-block__filename">old-way.js</span>
+            <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+          </div>
+          <div class="code-block__body">
+            <code><span class="tok-comment">// ⚠️  Legacy — avoid in modern JS</span>
+<span class="tok-keyword">var</span> <span class="tok-var">userName</span> <span class="tok-op">=</span> <span class="tok-string">"Alice"</span><span class="tok-op">;</span>
+
+<span class="tok-comment">// Danger: var is function-scoped, not block-scoped</span>
+<span class="tok-keyword">if</span> <span class="tok-op">(</span><span class="tok-bool">true</span><span class="tok-op">)</span> <span class="tok-op">{</span>
+  <span class="tok-keyword">var</span> <span class="tok-var">leaked</span> <span class="tok-op">=</span> <span class="tok-string">"I escaped the block!"</span><span class="tok-op">;</span>
+<span class="tok-op">}</span>
+<span class="tok-fn">console</span><span class="tok-op">.</span><span class="tok-fn">log</span><span class="tok-op">(</span><span class="tok-var">leaked</span><span class="tok-op">)</span><span class="tok-op">;</span> <span class="tok-comment">// "I escaped the block!" 😱</span></code>
+          </div>
+        </article>
+        <div class="var-info">
+          <div class="var-info-item">
+            <div class="var-info-item__label">Reassignable?</div>
+            <div class="var-info-item__value" style="color:var(--color-green)">
+              <i class="fa fa-check-circle" aria-hidden="true"></i> Yes
+            </div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Scope</div>
+            <div class="var-info-item__value" style="color:var(--color-gold)">Function-scoped (leaks!)</div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Hoisted?</div>
+            <div class="var-info-item__value" style="color:var(--color-red)">Yes, AND initialized to undefined</div>
+          </div>
+          <div class="var-info-item">
+            <div class="var-info-item__label">Best used for</div>
+            <div class="var-info-item__value" style="color:var(--color-red)">Avoid — use let/const instead</div>
+          </div>
+        </div>
+        <div class="industry-example" style="border-left-color:var(--color-gold)">
+          <div class="industry-example__label" style="color:var(--color-gold)">
+            <iconify-icon icon="ph:warning" aria-hidden="true"></iconify-icon>
+            Industry Warning
+          </div>
+          <p style="font-size:.875rem;color:var(--text-secondary)">
+            <code style="font-family:var(--font-mono);color:var(--color-gold)">var</code> was the
+            only option before ES6 (2015). It has unpredictable scoping behaviour and is the source
+            of many bugs. Every major style guide (Airbnb, Google) bans it. Only learn it to
+            read legacy code.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     6. DATA TYPES
+══════════════════════════════════════════════════════ -->
+<section id="data-types" class="section" aria-labelledby="data-types-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--primary reveal">
+          <iconify-icon icon="ph:shapes" aria-hidden="true"></iconify-icon> Section 04
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="data-types-title">
+        Data Types: <span class="gradient-text">What Goes in the Box</span>
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        JavaScript's 5 primitive types — the fundamental building blocks of 
+        every value your program ever touches. Hover each card to explore.
+      </p>
+    </header>
+
+    <div class="types-grid">
+
+      <!-- String -->
+      <article class="type-card type-card--string reveal" tabindex="0" aria-label="String data type">
+        <div class="type-card__icon" aria-hidden="true">
+          <iconify-icon icon="ph:text-aa"></iconify-icon>
+        </div>
+        <div class="type-card__name">String</div>
+        <div class="type-card__desc">Text data — any sequence of characters wrapped in quotes. Used for names, messages, and UI content.</div>
+        <div class="type-card__example">"Hello, world!"</div>
+      </article>
+
+      <!-- Number -->
+      <article class="type-card type-card--number reveal reveal-delay-1" tabindex="0" aria-label="Number data type">
+        <div class="type-card__icon" aria-hidden="true">
+          <iconify-icon icon="ph:hash"></iconify-icon>
+        </div>
+        <div class="type-card__name">Number</div>
+        <div class="type-card__desc">All numbers — integers and decimals. JS uses a single type for both, stored as a 64-bit float.</div>
+        <div class="type-card__example">42 &nbsp;·&nbsp; 3.14 &nbsp;·&nbsp; -7</div>
+      </article>
+
+      <!-- Boolean -->
+      <article class="type-card type-card--boolean reveal reveal-delay-2" tabindex="0" aria-label="Boolean data type">
+        <div class="type-card__icon" aria-hidden="true">
+          <iconify-icon icon="ph:toggle-right"></iconify-icon>
+        </div>
+        <div class="type-card__name">Boolean</div>
+        <div class="type-card__desc">Binary truth values. The backbone of all logic — if statements, loops, and conditions depend on these.</div>
+        <div class="type-card__example">true &nbsp;·&nbsp; false</div>
+      </article>
+
+      <!-- Null -->
+      <article class="type-card type-card--null reveal reveal-delay-3" tabindex="0" aria-label="Null data type">
+        <div class="type-card__icon" aria-hidden="true">
+          <iconify-icon icon="ph:x-circle"></iconify-icon>
+        </div>
+        <div class="type-card__name">Null</div>
+        <div class="type-card__desc">An intentional absence of value. You set this deliberately to say "there's nothing here on purpose."</div>
+        <div class="type-card__example">null</div>
+      </article>
+
+      <!-- Undefined -->
+      <article class="type-card type-card--undefined reveal reveal-delay-1" tabindex="0" aria-label="Undefined data type">
+        <div class="type-card__icon" aria-hidden="true">
+          <iconify-icon icon="ph:question"></iconify-icon>
+        </div>
+        <div class="type-card__name">Undefined</div>
+        <div class="type-card__desc">A variable that exists but hasn't been assigned a value yet. JS sets this automatically.</div>
+        <div class="type-card__example">let x; // → undefined</div>
+      </article>
+
+      <!-- Object -->
+      <article class="type-card type-card--object reveal reveal-delay-2" tabindex="0" aria-label="Object data type">
+        <div class="type-card__icon" aria-hidden="true">
+          <iconify-icon icon="ph:brackets-curly"></iconify-icon>
+        </div>
+        <div class="type-card__name">Object</div>
+        <div class="type-card__desc">A collection of key-value pairs. Arrays and functions are also objects under the hood.</div>
+        <div class="type-card__example">{ name: "Alex", age: 28 }</div>
+      </article>
+
+    </div>
+
+    <!-- typeof demo -->
+    <div class="code-glow-wrapper" style="max-width:680px;margin:var(--space-8) auto 0">
+      <article class="code-block reveal" aria-label="typeof operator examples">
+        <div class="code-block__header">
+          <div class="code-block__dots" aria-hidden="true">
+            <span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span>
+          </div>
+          <span class="code-block__filename">typeof-examples.js</span>
+          <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+        </div>
+        <div class="code-block__body">
+          <code><span class="tok-comment">// The typeof operator reveals a value's type</span>
+<span class="tok-keyword">typeof</span> <span class="tok-string">"hello"</span>     <span class="tok-comment">// → "string"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-number">42</span>          <span class="tok-comment">// → "number"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-bool">true</span>        <span class="tok-comment">// → "boolean"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-bool">null</span>        <span class="tok-comment">// → "object"  ← famous JS quirk!</span>
+<span class="tok-keyword">typeof</span> <span class="tok-var">undefined</span>   <span class="tok-comment">// → "undefined"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-op">{}</span>           <span class="tok-comment">// → "object"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-op">[]</span>           <span class="tok-comment">// → "object"  ← arrays are objects!</span>
+<span class="tok-keyword">typeof</span> <span class="tok-keyword">function</span><span class="tok-op">(){}</span> <span class="tok-comment">// → "function"</span></code>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     7. UNDER THE HOOD: NUMBERS
+══════════════════════════════════════════════════════ -->
+<section id="numbers" class="section" aria-labelledby="numbers-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--accent reveal">
+          <iconify-icon icon="ph:cpu-chip" aria-hidden="true"></iconify-icon> Section 05
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="numbers-title">
+        Under the Hood:<br>
+        <span class="gradient-text">How Numbers are Stored</span>
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        Why does <code style="font-family:var(--font-mono);color:var(--syn-number)">0.1 + 0.2</code>
+        not equal <code style="font-family:var(--font-mono);color:var(--syn-number)">0.3</code>?
+        The answer lies in how computers represent fractions in binary.
+      </p>
+    </header>
+
+    <div class="ieee-layout">
+
+      <!-- Bit visual -->
+      <div class="reveal">
+        <figure class="ieee-bits">
+          <div class="ieee-bits__title">IEEE 754 — Double-Precision 64-bit Float</div>
+          <div class="bits-row" role="img" aria-label="64-bit IEEE 754 floating point number representation">
+            <!-- Sign (1 bit) -->
+            <div class="bit bit--sign" title="Sign bit">0</div>
+            <!-- Exponent (11 bits) -->
+            <div class="bit bit--exp" title="Exponent">0</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <div class="bit bit--exp" title="Exponent">0</div>
+            <div class="bit bit--exp" title="Exponent">1</div>
+            <!-- Mantissa (52 bits) -->
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">1</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">0</div>
+            <div class="bit bit--mant" title="Mantissa">…</div>
+          </div>
+          <div class="bits-legend">
+            <div class="bits-legend__item">
+              <div class="bits-legend__dot" style="background:rgba(255,83,112,0.4)"></div>
+              <span>1 bit — Sign (+ or −)</span>
+            </div>
+            <div class="bits-legend__item">
+              <div class="bits-legend__dot" style="background:rgba(255,203,107,0.4)"></div>
+              <span>11 bits — Exponent</span>
+            </div>
+            <div class="bits-legend__item">
+              <div class="bits-legend__dot" style="background:rgba(130,170,255,0.3)"></div>
+              <span>52 bits — Mantissa (precision)</span>
+            </div>
+          </div>
+        </figure>
+
+        <div style="margin-top:var(--space-3);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-3)">
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:var(--space-1);text-transform:uppercase;letter-spacing:.08em;font-weight:700">Key Insight</p>
+          <p style="font-size:.9rem;color:var(--text-secondary);line-height:1.7">
+            JavaScript has <strong>only one number type</strong>.
+            Unlike other languages, there's no <code style="font-family:var(--font-mono)">int</code> vs
+            <code style="font-family:var(--font-mono)">float</code>. Every number —
+            <code style="font-family:var(--font-mono);color:var(--syn-number)">1</code>,
+            <code style="font-family:var(--font-mono);color:var(--syn-number)">3.14</code>,
+            <code style="font-family:var(--font-mono);color:var(--syn-number)">1e9</code>
+            — uses this same 64-bit structure.
+          </p>
+        </div>
+      </div>
+
+      <!-- Explanation + quirk -->
+      <div class="reveal reveal-delay-2">
+        <article class="code-block" aria-label="Number examples in JavaScript">
+          <div class="code-block__header">
+            <div class="code-block__dots" aria-hidden="true">
+              <span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span>
+            </div>
+            <span class="code-block__filename">numbers.js</span>
+            <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+          </div>
+          <div class="code-block__body">
+            <code><span class="tok-comment">// All of these are the same type: "number"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-number">42</span>           <span class="tok-comment">// "number"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-number">3.14</span>         <span class="tok-comment">// "number"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-number">Infinity</span>     <span class="tok-comment">// "number"</span>
+<span class="tok-keyword">typeof</span> <span class="tok-number">NaN</span>          <span class="tok-comment">// "number"  ← Not-a-Number is a Number 🤯</span>
+
+<span class="tok-comment">// Safe integer range</span>
+<span class="tok-fn">Number</span><span class="tok-op">.</span><span class="tok-var">MAX_SAFE_INTEGER</span> <span class="tok-comment">// 9,007,199,254,740,991</span>
+<span class="tok-fn">Number</span><span class="tok-op">.</span><span class="tok-var">MIN_SAFE_INTEGER</span> <span class="tok-comment">// -9,007,199,254,740,991</span></code>
+          </div>
+        </article>
+
+        <div class="quirk-box reveal reveal-delay-3">
+          <div class="quirk-box__header">
+            <iconify-icon icon="ph:warning-circle" aria-hidden="true"></iconify-icon>
+            The Famous Floating Point Quirk
+          </div>
+          <article class="code-block" style="margin-bottom:var(--space-2)" aria-label="Floating point quirk example">
+            <div class="code-block__body" style="padding:var(--space-2) var(--space-3)">
+              <code><span class="tok-number">0.1</span> <span class="tok-op">+</span> <span class="tok-number">0.2</span> <span class="tok-comment">// → 0.30000000000000004</span>
+<span class="tok-number">0.1</span> <span class="tok-op">+</span> <span class="tok-number">0.2</span> <span class="tok-op">===</span> <span class="tok-number">0.3</span>  <span class="tok-comment">// → false ⚠️</span></code>
+            </div>
+          </article>
+          <p>
+            The fraction <code style="font-family:var(--font-mono);color:var(--syn-number)">0.1</code>
+            cannot be represented exactly in binary (just like ⅓ can't be expressed exactly in decimal).
+            The 52-bit mantissa has to round — and that rounding error accumulates.
+            <strong>Fix it</strong> by using
+            <code style="font-family:var(--font-mono);color:var(--syn-function)">toFixed()</code>
+            or multiply to integers before operating.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     8. OPERATORS
+══════════════════════════════════════════════════════ -->
+<section id="operators" class="section" aria-labelledby="operators-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--primary reveal">
+          <iconify-icon icon="ph:plus-minus" aria-hidden="true"></iconify-icon> Section 06
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="operators-title">
+        Operators: <span class="gradient-text">The Verbs of JavaScript</span>
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        Operators are the actions that transform your data. Arithmetic, comparison,
+        logical — they're how you make decisions and compute results.
+      </p>
+    </header>
+
+    <div class="operators-layout">
+
+      <!-- Arithmetic -->
+      <article class="operator-group reveal" aria-labelledby="arith-title">
+        <div class="operator-group__title" id="arith-title">
+          <iconify-icon icon="ph:calculator" aria-hidden="true"></iconify-icon>
+          Arithmetic
+        </div>
+        <ul class="op-list" role="list">
+          <li class="op-item"><span class="op-sym">+</span><span class="op-name">Addition</span><span class="op-example">5 + 3 → 8</span></li>
+          <li class="op-item"><span class="op-sym">-</span><span class="op-name">Subtraction</span><span class="op-example">10 - 4 → 6</span></li>
+          <li class="op-item"><span class="op-sym">*</span><span class="op-name">Multiplication</span><span class="op-example">4 * 3 → 12</span></li>
+          <li class="op-item"><span class="op-sym">/</span><span class="op-name">Division</span><span class="op-example">9 / 3 → 3</span></li>
+          <li class="op-item"><span class="op-sym">%</span><span class="op-name">Modulo (remainder)</span><span class="op-example">7 % 2 → 1</span></li>
+          <li class="op-item"><span class="op-sym">**</span><span class="op-name">Exponentiation</span><span class="op-example">2 ** 8 → 256</span></li>
+        </ul>
+      </article>
+
+      <!-- Comparison -->
+      <article class="operator-group reveal reveal-delay-1" aria-labelledby="comp-title">
+        <div class="operator-group__title" id="comp-title">
+          <iconify-icon icon="ph:scales" aria-hidden="true"></iconify-icon>
+          Comparison
+        </div>
+        <ul class="op-list" role="list">
+          <li class="op-item"><span class="op-sym">==</span><span class="op-name">Loose equality</span><span class="op-example">"5" == 5 → true</span></li>
+          <li class="op-item"><span class="op-sym">===</span><span class="op-name">Strict equality</span><span class="op-example">"5" === 5 → false</span></li>
+          <li class="op-item"><span class="op-sym">!=</span><span class="op-name">Loose inequality</span><span class="op-example">"5" != 5 → false</span></li>
+          <li class="op-item"><span class="op-sym">!==</span><span class="op-name">Strict inequality</span><span class="op-example">"5" !== 5 → true</span></li>
+          <li class="op-item"><span class="op-sym">&lt;</span><span class="op-name">Less than</span><span class="op-example">3 &lt; 5 → true</span></li>
+          <li class="op-item"><span class="op-sym">&gt;=</span><span class="op-name">Greater or equal</span><span class="op-example">5 &gt;= 5 → true</span></li>
+        </ul>
+      </article>
+
+      <!-- Logical -->
+      <article class="operator-group reveal reveal-delay-2" aria-labelledby="logic-title">
+        <div class="operator-group__title" id="logic-title">
+          <iconify-icon icon="ph:git-branch" aria-hidden="true"></iconify-icon>
+          Logical
+        </div>
+        <ul class="op-list" role="list">
+          <li class="op-item"><span class="op-sym">&amp;&amp;</span><span class="op-name">AND — both true</span><span class="op-example">true &amp;&amp; false → false</span></li>
+          <li class="op-item"><span class="op-sym">||</span><span class="op-name">OR — at least one true</span><span class="op-example">true || false → true</span></li>
+          <li class="op-item"><span class="op-sym">!</span><span class="op-name">NOT — flips value</span><span class="op-example">!true → false</span></li>
+          <li class="op-item"><span class="op-sym">??</span><span class="op-name">Nullish coalescing</span><span class="op-example">null ?? "def" → "def"</span></li>
+          <li class="op-item"><span class="op-sym">?.</span><span class="op-name">Optional chaining</span><span class="op-example">obj?.name → safe</span></li>
+        </ul>
+      </article>
+
+      <!-- Assignment -->
+      <article class="operator-group reveal reveal-delay-3" aria-labelledby="assign-title">
+        <div class="operator-group__title" id="assign-title">
+          <iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon>
+          Assignment
+        </div>
+        <ul class="op-list" role="list">
+          <li class="op-item"><span class="op-sym">=</span><span class="op-name">Assign</span><span class="op-example">x = 5</span></li>
+          <li class="op-item"><span class="op-sym">+=</span><span class="op-name">Add &amp; assign</span><span class="op-example">x += 3 → x = x + 3</span></li>
+          <li class="op-item"><span class="op-sym">-=</span><span class="op-name">Subtract &amp; assign</span><span class="op-example">x -= 1</span></li>
+          <li class="op-item"><span class="op-sym">*=</span><span class="op-name">Multiply &amp; assign</span><span class="op-example">x *= 2</span></li>
+          <li class="op-item"><span class="op-sym">++</span><span class="op-name">Increment</span><span class="op-example">x++ → x = x + 1</span></li>
+          <li class="op-item"><span class="op-sym">--</span><span class="op-name">Decrement</span><span class="op-example">x-- → x = x - 1</span></li>
+        </ul>
+      </article>
+
+    </div>
+
+    <!-- Live Checkout Demo -->
+    <div class="checkout-demo reveal" style="margin-top:var(--space-8)">
+      <div class="checkout-demo__title">
+        <iconify-icon icon="ph:shopping-cart" aria-hidden="true"></iconify-icon>
+        Interactive: Operators at Checkout
+      </div>
+      <p style="font-size:.875rem;color:var(--text-muted);margin-bottom:var(--space-3);line-height:1.65">
+        Change the price and discount below — watch JavaScript operators calculate the real-time total.
+      </p>
+      <div class="checkout-input-row">
+        <div class="checkout-field">
+          <label for="itemPrice">Item Price ($)</label>
+          <input type="number" id="itemPrice" value="99.99" min="0" step="0.01" aria-label="Item price in dollars" />
+        </div>
+        <div class="checkout-field">
+          <label for="discountPct">Discount (%)</label>
+          <input type="number" id="discountPct" value="20" min="0" max="100" aria-label="Discount percentage" />
+        </div>
+      </div>
+      <div class="checkout-result output-box" id="checkoutResult" aria-live="polite" aria-label="Checkout calculation result"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     9. TYPE CONVERSION
+══════════════════════════════════════════════════════ -->
+<section id="type-conversion" class="section" aria-labelledby="coercion-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--accent reveal">
+          <iconify-icon icon="ph:arrows-left-right" aria-hidden="true"></iconify-icon> Section 07
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="coercion-title">
+        Type Conversion:<br>
+        <span class="gradient-text">The Hidden Trap</span>
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        JavaScript quietly converts types when you're not looking. Understand
+        explicit vs. implicit coercion — or face mysterious bugs.
+      </p>
+    </header>
+
+    <div class="coercion-layout">
+
+      <!-- Explicit -->
+      <article class="coercion-card reveal" aria-labelledby="explicit-title">
+        <div class="coercion-card__header">
+          <span class="coercion-card__badge badge--explicit" id="explicit-title">Explicit</span>
+          <span style="color:var(--text-secondary);font-size:.875rem">You are in control</span>
+        </div>
+        <div class="code-block" aria-label="Explicit type conversion examples">
+          <div class="code-block__header">
+            <div class="code-block__dots" aria-hidden="true"><span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span></div>
+            <span class="code-block__filename">explicit.js</span>
+            <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+          </div>
+          <div class="code-block__body">
+            <code><span class="tok-comment">// You explicitly tell JS to convert</span>
+<span class="tok-fn">Number</span><span class="tok-op">(</span><span class="tok-string">"42"</span><span class="tok-op">)</span>         <span class="tok-comment">// 42      ✓</span>
+<span class="tok-fn">Number</span><span class="tok-op">(</span><span class="tok-string">"3.14"</span><span class="tok-op">)</span>       <span class="tok-comment">// 3.14   ✓</span>
+<span class="tok-fn">Number</span><span class="tok-op">(</span><span class="tok-string">""</span><span class="tok-op">)</span>           <span class="tok-comment">// 0       ⚠️</span>
+<span class="tok-fn">Number</span><span class="tok-op">(</span><span class="tok-bool">true</span><span class="tok-op">)</span>         <span class="tok-comment">// 1</span>
+<span class="tok-fn">Number</span><span class="tok-op">(</span><span class="tok-bool">false</span><span class="tok-op">)</span>        <span class="tok-comment">// 0</span>
+<span class="tok-fn">String</span><span class="tok-op">(</span><span class="tok-number">42</span><span class="tok-op">)</span>           <span class="tok-comment">// "42"</span>
+<span class="tok-fn">Boolean</span><span class="tok-op">(</span><span class="tok-number">0</span><span class="tok-op">)</span>          <span class="tok-comment">// false (falsy)</span>
+<span class="tok-fn">parseInt</span><span class="tok-op">(</span><span class="tok-string">"42px"</span><span class="tok-op">)</span>    <span class="tok-comment">// 42     ← great for CSS!</span></code>
+          </div>
+        </div>
+        <div class="industry-example" style="margin-top:var(--space-2)">
+          <div class="industry-example__label">
+            <iconify-icon icon="ph:buildings" aria-hidden="true"></iconify-icon>
+            Real Use Case
+          </div>
+          <p style="font-size:.8rem;color:var(--text-secondary);line-height:1.65">
+            A form's <code style="font-family:var(--font-mono)">&lt;input&gt;</code> always gives you a
+            <strong>string</strong>. Before adding an age or price, you MUST convert it:
+            <code style="font-family:var(--font-mono);color:var(--syn-function)">Number(input.value)</code>.
+          </p>
+        </div>
+      </article>
+
+      <!-- Implicit -->
+      <article class="coercion-card reveal reveal-delay-2" aria-labelledby="implicit-title">
+        <div class="coercion-card__header">
+          <span class="coercion-card__badge badge--implicit" id="implicit-title">Implicit</span>
+          <span style="color:var(--text-secondary);font-size:.875rem">JS does it silently</span>
+        </div>
+        <div class="code-block" aria-label="Implicit type coercion examples">
+          <div class="code-block__header">
+            <div class="code-block__dots" aria-hidden="true"><span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span></div>
+            <span class="code-block__filename">implicit.js</span>
+            <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+          </div>
+          <div class="code-block__body">
+            <code><span class="tok-comment">// JS converts for you — often surprisingly</span>
+<span class="tok-string">"5"</span> <span class="tok-op">+</span> <span class="tok-number">1</span>       <span class="tok-comment">// "51"  ← string wins with +</span>
+<span class="tok-string">"5"</span> <span class="tok-op">-</span> <span class="tok-number">1</span>       <span class="tok-comment">// 4     ← - converts string to number</span>
+<span class="tok-string">"5"</span> <span class="tok-op">*</span> <span class="tok-number">2</span>       <span class="tok-comment">// 10    ← same for * and /</span>
+<span class="tok-bool">true</span> <span class="tok-op">+</span> <span class="tok-number">1</span>     <span class="tok-comment">// 2     ← true becomes 1</span>
+<span class="tok-bool">false</span> <span class="tok-op">+</span> <span class="tok-number">1</span>    <span class="tok-comment">// 1     ← false becomes 0</span>
+<span class="tok-bool">null</span> <span class="tok-op">+</span> <span class="tok-number">1</span>     <span class="tok-comment">// 1     ← null becomes 0</span>
+<span class="tok-string">""</span> <span class="tok-op">==</span> <span class="tok-bool">false</span>  <span class="tok-comment">// true  ← both falsy (💀)</span></code>
+          </div>
+        </div>
+        <div class="industry-example" style="margin-top:var(--space-2);border-left-color:var(--color-red)">
+          <div class="industry-example__label" style="color:var(--color-red)">
+            <iconify-icon icon="ph:bug" aria-hidden="true"></iconify-icon>
+            Classic Bug in Production
+          </div>
+          <p style="font-size:.8rem;color:var(--text-secondary);line-height:1.65">
+            A developer reads a price from an input and does
+            <code style="font-family:var(--font-mono)">price + tax</code>.
+            Since <code style="font-family:var(--font-mono)">price</code> is a string,
+            <code style="font-family:var(--font-mono)">"99.99" + 8 = "99.998"</code> —
+            and the user is charged $99.998. 🔥
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Interactive Coercion Tester -->
+    <div class="coercion-tester reveal" style="margin-top:var(--space-6)">
+      <div class="coercion-tester__title">
+        <iconify-icon icon="ph:flask" aria-hidden="true"></iconify-icon>
+        Live Coercion Lab — Try it yourself
+      </div>
+      <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:var(--space-3);line-height:1.65">
+        Type any two values and an operator. Watch JavaScript decide what they become.
+      </p>
+      <div class="coercion-input-group">
+        <input class="coercion-input" type="text" id="coerceA" value="5" placeholder="Value A" aria-label="First value" />
+        <select class="op-select" id="coerceOp" aria-label="Operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+        <input class="coercion-input" type="text" id="coerceB" value="3" placeholder="Value B" aria-label="Second value" />
+      </div>
+      <div class="output-box" id="coercionResult" aria-live="polite" aria-label="Coercion result" style="font-size:.875rem;line-height:1.8;min-height:80px"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     10. EQUALITY (== vs ===)
+══════════════════════════════════════════════════════ -->
+<section id="equality" class="section" aria-labelledby="equality-title">
+  <div class="container">
+
+    <header class="section__header">
+      <span class="section__eyebrow">
+        <span class="badge badge--primary reveal">
+          <iconify-icon icon="ph:equals" aria-hidden="true"></iconify-icon> Section 08
+        </span>
+      </span>
+      <h2 class="section__title reveal reveal-delay-1" id="equality-title">
+        Comparing Values:<br>
+        <code class="gradient-text" style="font-family:var(--font-mono)">=== vs ==</code>
+      </h2>
+      <p class="section__subtitle reveal reveal-delay-2">
+        One checks value. The other checks value <em>and</em> type.
+        The difference is the source of countless JavaScript bugs.
+      </p>
+    </header>
+
+    <!-- Side-by-side comparison -->
+    <div class="equality-comparison">
+
+      <!-- Loose (==) -->
+      <article class="eq-card eq-card--loose reveal" aria-labelledby="loose-title">
+        <div class="eq-card__header">
+          <iconify-icon icon="ph:warning" style="color:var(--color-red)" aria-hidden="true"></iconify-icon>
+          <div>
+            <div class="eq-card__title" id="loose-title">==</div>
+            <div class="eq-card__subtitle">Loose Equality · Avoid in production</div>
+          </div>
+        </div>
+        <div class="eq-card__body">
+          <p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:var(--space-2);line-height:1.65">
+            Coerces types before comparing. Two different things can appear "equal":
+          </p>
+
+          <!-- Equality examples -->
+          <div style="display:flex;flex-direction:column;gap:8px">
+
+            <div class="eq-item" data-left='"5"' data-right="5">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-string">"5"</span> == <span class="tok-number">5</span></span>
+                <span class="eq-loose" style="font-weight:700"></span>
+              </div>
+            </div>
+
+            <div class="eq-item" data-left="0" data-right="false">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-number">0</span> == <span class="tok-bool">false</span></span>
+                <span class="eq-loose" style="font-weight:700"></span>
+              </div>
+            </div>
+
+            <div class="eq-item" data-left='""' data-right="false">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-string">""</span> == <span class="tok-bool">false</span></span>
+                <span class="eq-loose" style="font-weight:700"></span>
+              </div>
+            </div>
+
+            <div class="eq-item" data-left="null" data-right="undefined">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-bool">null</span> == <span class="tok-bool">undefined</span></span>
+                <span class="eq-loose" style="font-weight:700"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="eq-card__verdict">
+            <iconify-icon icon="ph:warning" aria-hidden="true"></iconify-icon>
+            Unpredictable — avoid in all production code
+          </div>
+        </div>
+      </article>
+
+      <!-- VS divider -->
+      <div class="vs-divider reveal reveal-delay-2">
+        <div class="vs-badge">VS</div>
+      </div>
+
+      <!-- Strict (===) -->
+      <article class="eq-card eq-card--strict reveal reveal-delay-1" aria-labelledby="strict-title">
+        <div class="eq-card__header">
+          <iconify-icon icon="ph:check-circle" style="color:var(--color-green)" aria-hidden="true"></iconify-icon>
+          <div>
+            <div class="eq-card__title" id="strict-title">===</div>
+            <div class="eq-card__subtitle">Strict Equality · Industry standard</div>
+          </div>
+        </div>
+        <div class="eq-card__body">
+          <p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:var(--space-2);line-height:1.65">
+            No type coercion. Different types are always unequal — predictable and safe:
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+
+            <div class="eq-item" data-left='"5"' data-right="5">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-string">"5"</span> === <span class="tok-number">5</span></span>
+                <span class="eq-strict" style="font-weight:700"></span>
+              </div>
+            </div>
+
+            <div class="eq-item" data-left="0" data-right="false">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-number">0</span> === <span class="tok-bool">false</span></span>
+                <span class="eq-strict" style="font-weight:700"></span>
+              </div>
+            </div>
+
+            <div class="eq-item" data-left='""' data-right="false">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-string">""</span> === <span class="tok-bool">false</span></span>
+                <span class="eq-strict" style="font-weight:700"></span>
+              </div>
+            </div>
+
+            <div class="eq-item" data-left="null" data-right="undefined">
+              <div style="font-family:var(--font-mono);font-size:.82rem;background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center">
+                <span><span class="tok-bool">null</span> === <span class="tok-bool">undefined</span></span>
+                <span class="eq-strict" style="font-weight:700"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="eq-card__verdict">
+            <iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon>
+            Predictable — always use this. ESLint enforces it.
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Rule of thumb -->
+    <div class="code-glow-wrapper" style="max-width:600px;margin:var(--space-6) auto 0">
+      <article class="code-block reveal" aria-label="Strict equality best practice">
+        <div class="code-block__header">
+          <div class="code-block__dots" aria-hidden="true"><span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span></div>
+          <span class="code-block__filename">rule-of-thumb.js</span>
+          <button class="copy-btn" aria-label="Copy code"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+        </div>
+        <div class="code-block__body">
+          <code><span class="tok-comment">// ✅ Always use === in production</span>
+<span class="tok-keyword">if</span> <span class="tok-op">(</span><span class="tok-var">userInput</span> <span class="tok-op">===</span> <span class="tok-string">"submit"</span><span class="tok-op">)</span> <span class="tok-op">{</span>
+  <span class="tok-fn">processForm</span><span class="tok-op">()</span><span class="tok-op">;</span>
+<span class="tok-op">}</span>
+
+<span class="tok-comment">// ❌ Never use == — JS will surprise you</span>
+<span class="tok-keyword">if</span> <span class="tok-op">(</span><span class="tok-var">userInput</span> <span class="tok-op">==</span> <span class="tok-string">"submit"</span><span class="tok-op">)</span> <span class="tok-op">{</span>
+  <span class="tok-comment">// This might match things you didn't expect</span>
+<span class="tok-op">}</span></code>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════
+     11. CTA BANNER
+══════════════════════════════════════════════════════ -->
+<section id="cta" class="section" aria-labelledby="cta-title" style="position:relative;overflow:hidden">
+  <!-- Background glow -->
+  <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(124,58,237,0.12),transparent);pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:48px 48px;pointer-events:none"></div>
+
+  <div class="container">
+    <div class="cta-inner">
+
+      <span class="badge badge--primary reveal" style="margin-bottom:var(--space-3)">
+        <iconify-icon icon="ph:rocket-launch" aria-hidden="true"></iconify-icon>
+        You're ready for the next step
+      </span>
+
+      <h2 class="reveal reveal-delay-1" id="cta-title">
+        You now understand the
+        <span class="gradient-text">fundamentals</span>
+        that make JavaScript tick.
+      </h2>
+
+      <p class="reveal reveal-delay-2">
+        Variables, types, memory, operators, coercion, equality — these aren't just
+        trivia. They're the mental model every senior developer uses every day.
+        Now let's put it all together.
+      </p>
+
+      <div class="cta-badge-row reveal reveal-delay-2">
+        <div class="cta-feature">
+          <iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon>
+          Variables &amp; Memory
+        </div>
+        <div class="cta-feature">
+          <iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon>
+          Data Types
+        </div>
+        <div class="cta-feature">
+          <iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon>
+          Operators
+        </div>
+        <div class="cta-feature">
+          <iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon>
+          Type Coercion
+        </div>
+        <div class="cta-feature">
+          <iconify-icon icon="ph:check-circle" aria-hidden="true"></iconify-icon>
+          Strict Equality
+        </div>
+      </div>
+
+      <div class="cta-glow reveal reveal-delay-3">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener noreferrer" class="btn btn--primary" id="cta-main-btn" style="font-size:1.05rem;padding:18px 40px">
+          <iconify-icon icon="ph:code-block" aria-hidden="true"></iconify-icon>
+          Build Your First Project
+        </a>
+      </div>
+
+      <p class="reveal reveal-delay-4" style="margin-top:var(--space-3);font-size:.8rem;color:var(--text-muted)">
+        Continues with: Functions → Arrays → DOM Manipulation → Async JS
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     12. FOOTER
+══════════════════════════════════════════════════════ -->
+<footer id="footer" role="contentinfo">
+  <div class="container">
+
+    <div class="footer__grid">
+
+      <!-- Brand -->
+      <div class="footer__brand">
+        <a href="#hero" class="navbar__logo" aria-label="JSCore home" style="display:inline-flex">
+          <div class="navbar__logo-icon" aria-hidden="true">JS</div>
+          <span>JS<strong>Core</strong></span>
+        </a>
+        <p>
+          A premium, free educational resource for developers who want to truly
+          understand JavaScript — not just copy-paste it.
+        </p>
+      </div>
+
+      <!-- Concepts -->
+      <nav class="footer__col" aria-label="Course concepts">
+        <p class="footer__col-title">Concepts</p>
+        <ul class="footer__links" role="list">
+          <li><a href="#why-js"          class="footer__link"><iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon> Why JavaScript</a></li>
+          <li><a href="#memory"          class="footer__link"><iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon> Memory &amp; Bytes</a></li>
+          <li><a href="#variables"       class="footer__link"><iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon> Variables</a></li>
+          <li><a href="#data-types"      class="footer__link"><iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon> Data Types</a></li>
+          <li><a href="#operators"       class="footer__link"><iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon> Operators</a></li>
+          <li><a href="#type-conversion" class="footer__link"><iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon> Type Coercion</a></li>
+          <li><a href="#equality"        class="footer__link"><iconify-icon icon="ph:arrow-right" aria-hidden="true"></iconify-icon> Equality</a></li>
+        </ul>
+      </nav>
+
+      <!-- Resources -->
+      <nav class="footer__col" aria-label="External resources">
+        <p class="footer__col-title">Resources</p>
+        <ul class="footer__links" role="list">
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="footer__link">
+              <iconify-icon icon="ph:book-open" aria-hidden="true"></iconify-icon> MDN Web Docs
+            </a>
+          </li>
+          <li>
+            <a href="https://javascript.info" target="_blank" rel="noopener noreferrer" class="footer__link">
+              <iconify-icon icon="ph:globe" aria-hidden="true"></iconify-icon> javascript.info
+            </a>
+          </li>
+          <li>
+            <a href="https://tc39.es/ecma262/" target="_blank" rel="noopener noreferrer" class="footer__link">
+              <iconify-icon icon="ph:file-text" aria-hidden="true"></iconify-icon> ECMAScript Spec
+            </a>
+          </li>
+          <li>
+            <a href="https://caniuse.com" target="_blank" rel="noopener noreferrer" class="footer__link">
+              <iconify-icon icon="ph:browsers" aria-hidden="true"></iconify-icon> Can I Use
+            </a>
+          </li>
+          <li>
+            <a href="https://eslint.org" target="_blank" rel="noopener noreferrer" class="footer__link">
+              <iconify-icon icon="ph:check-square" aria-hidden="true"></iconify-icon> ESLint
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; 2026 JSCore. Made with
+        <iconify-icon icon="ph:heart" style="color:var(--color-red);vertical-align:-2px" aria-hidden="true"></iconify-icon>
+        for developers everywhere. Open source &amp; free.
+      </p>
+
+      <div class="footer__social" aria-label="Social links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Twitter/X">
+          <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Discord">
+          <i class="fa-brands fa-discord" aria-hidden="true"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="YouTube">
+          <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
